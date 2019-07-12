@@ -1,0 +1,64 @@
+@import './variables'
+global-reset()
+
+html, body
+    height 100%
+    font-size 28px
+    color $etBlack
+    font-family "Helvetica Neue", Helvetica, Arial, sans-serif
+
+#app
+    height 100%
+    width 100%
+    // margin-left 0
+    // margin-right 0
+    background-color #f1f1f1
+    max-width 1500px
+    margin 0 auto
+    position relative
+    .componentHeader
+        display none
+
+#app.appLoaded
+    height 100%
+    width 100%
+    background-image none
+    .componentHeader
+        display block
+        max-width 1500px
+        z-index 100
+
+.mainBox
+    background-color #f1f1f1
+    -webkit-overflow-scrolling touch
+    overflow auto
+    height 100%
+    width 100%
+    box-sizing border-box
+    position relative
+    overflow-x hidden
+
+.academyContent
+    box-flex 1
+    flex 1 1 auto
+    -webkit-overflow-scrolling touch
+    overflow auto
+    width 100%
+    box-sizing border-box
+    position absolute
+    top 88px
+    left 0
+    bottom 0
+    z-index 10
+
+
+.backBtn
+    background-image url('../images/common/arrow_left_black.png')
+    width 88px
+    height 88px
+    background-size 50%
+    background-repeat no-repeat
+    background-position 20% 50%
+    display block
+::-webkit-input-placeholder
+    color $etGreyish
