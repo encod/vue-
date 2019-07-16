@@ -15,7 +15,6 @@ const mutations = {
 export const actions = {
     checkIsWeixin ({ commit }, isWX) {
         commit(MUTATION.CHECK_WEIXIN, isWX)
-        console.log(isWX)
     },
     initAppInfo ({ commit }, config) {
         commit(MUTATION.INIT_APP_INFO, config)

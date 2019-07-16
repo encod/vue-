@@ -4,6 +4,7 @@ import {
 } from 'vuex'
 import viewName from '../constant'
 import {Button} from 'vant'
+import toast from '../../components/ToastMtd'
 
 export default {
     name: viewName.home,
@@ -21,10 +22,19 @@ export default {
         })
     },
     mounted () {
+        toast('et_wl')
+        this.$ajax.get({
+            apiName: 'home',
+        })
     },
     methods: {
         ...mapActions([
             'checkIsWeixin',
         ]),
+        goUrl () {
+            this.$router.push({
+                path: '/login'
+            })
+        }
     }
 }

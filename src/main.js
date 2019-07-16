@@ -6,10 +6,10 @@ import router from './router'
 import 'amfe-flexible'
 import prepare from './components/Prepare'
 import store from './store'
-
+import ajax from './http/ajax'
 Vue.$store = store
 Vue.$router = router
-
+Vue.prototype.$ajax = ajax
 Vue.config.productionTip = false
 prepare(Vue)
 

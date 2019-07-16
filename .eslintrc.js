@@ -17,6 +17,7 @@ module.exports = {
     ],
     globals: {
       wx: true, // wx全局变量
+      GLOBAL_API_ENV: true
   },
     // required to lint *.vue files
     plugins: [
@@ -29,6 +30,7 @@ module.exports = {
       'indent': [2, 4],
         'comma-dangle': 0,
         'key-spacing': 0,
+        'no-useless-constructor': 0,
         'object-curly-spacing': 0,
         'no-multi-spaces': 0,
         'no-underscore-dangle': 0,

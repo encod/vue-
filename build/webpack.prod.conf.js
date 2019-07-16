@@ -10,7 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const Px2remWebpackPlugin = require('px2rem-webpack-plugin')
 const InjectScriptToHtml = require('./plugins/inject-script-to-html-plugin')
 
 
@@ -46,7 +45,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
-    new Px2remWebpackPlugin({originScreenWidth: 750}),
     new InjectScriptToHtml({
         path: config.build.configScript
     }),

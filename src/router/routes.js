@@ -7,6 +7,7 @@ const view = name => () => import(`@/views/${name}/index.vue`)
 const pageNotFound = view('pageNotFound')
 
 const home = view('home')
+const login = view('login')
 
 export default [
     {
@@ -21,5 +22,13 @@ export default [
             keepAlive: true,
         },
         component: home
+    },
+    {
+        path: '/login',
+        name: 'login',
+        meta: {
+            keepAlive: true,
+        },
+        component: login
     }
 ]

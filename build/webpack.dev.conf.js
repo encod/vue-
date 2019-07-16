@@ -10,7 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 const ET_WL_IP = require('ip').address();
-const Px2remWebpackPlugin = require('px2rem-webpack-plugin')
 const InjectScriptToHtml = require('./plugins/inject-script-to-html-plugin')
 
 const HOST = process.env.HOST
@@ -69,7 +68,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new Px2remWebpackPlugin({originScreenWidth: 750}),
     new InjectScriptToHtml({
         path: config.dev.configScript
     }),

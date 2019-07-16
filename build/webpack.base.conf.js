@@ -1,9 +1,11 @@
 'use strict'
 const path = require('path')
+const webpack = require('webpack')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-
+const DefinePlugin = webpack.DefinePlugin;	//允许在编译时配置全局常量
+const {API_ENV = 'alpha'} = process.env
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -79,5 +81,18 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+        options: {
+            stylus: {
+                use: [require('nib')()],
+                import: ['~nib/lib/nib/index.styl']
+            },
+        }
+    }),
+    new DefinePlugin({
+        GLOBAL_API_ENV:JSON.stringify(API_ENV)
+    }),
+    ]
 }

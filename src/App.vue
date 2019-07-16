@@ -13,10 +13,14 @@
             </span>
         </aca-header>
         <div class="mainBox">
-            <keep-alive>
-                <router-view v-if="$route.meta.keepAlive" class="academyContent" @setHeader="setHeader"></router-view>
-            </keep-alive>
-            <router-view v-if="!$route.meta.keepAlive" class="academyContent" @setHeader="setHeader"></router-view>
+            <transition name="fade" mode="out-in">
+                <keep-alive>
+                    <router-view v-if="$route.meta.keepAlive" class="academyContent" @setHeader="setHeader"></router-view>
+                </keep-alive>
+                <router-view v-if="!$route.meta.keepAlive" class="academyContent" @setHeader="setHeader"></router-view>
+            </transition>
+            <!-- <transition>
+            </transition> -->
         </div>
     </div>
 </template>
