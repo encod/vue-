@@ -53,7 +53,7 @@ exports.cssLoaders = function (options) {
       return ExtractTextPlugin.extract({
         use: loaders,
         fallback: 'vue-style-loader',
-        publicPath: '../../'
+        publicPath: '../../'  // 处理打包之后图片路径问题
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
