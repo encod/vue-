@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="box">
-        <van-button type="primary" @click="goUrl">去login页面</van-button>
+        <van-button type="primary" @click="goUrl">去login页</van-button>
     </div>
 </template>
 

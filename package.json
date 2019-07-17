@@ -6,7 +6,7 @@
   "author": "et_wl",
   "private": true,
   "scripts": {
-    "dev": "cross-env  webpack-dev-server --config build/webpack.dev.conf.js",
+    "dev": "cross-env  webpack-dev-server --inline --config build/webpack.dev.conf.js",
     "dev:beta": "cross-env API_ENV=beta webpack-dev-server  --config build/webpack.dev.conf.js",
     "dev:abtest": "cross-env API_ENV=abtest webpack-dev-server --config build/webpack.dev.conf.js",
     "dev:release": "cross-env API_ENV=release webpack-dev-server --config build/webpack.dev.conf.js",
