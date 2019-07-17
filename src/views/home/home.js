@@ -5,6 +5,7 @@ import {
 import viewName from '../constant'
 import {Button} from 'vant'
 import toast from '../../components/ToastMtd'
+import loading from '../../components/loading'
 
 export default {
     name: viewName.home,
@@ -23,14 +24,23 @@ export default {
     },
     mounted () {
         toast('et_wl')
-        this.$ajax.get({
-            apiName: 'home',
-        })
+        loading.show()
+        setTimeout(() => {
+            loading.hide()
+        }, 3000)
+        // this.$ajax.get('home').then(res => {
+        //     console.log(res)
+        // })
+        // this.es6()
     },
     methods: {
         ...mapActions([
             'checkIsWeixin',
         ]),
+        async es6 () {
+            const res = await this.$ajax.post('home', {region_id:4})
+            console.log(res)
+        },
         goUrl () {
             this.$router.push({
                 path: '/login'

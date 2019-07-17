@@ -1,7 +1,6 @@
 <template lang="html">
-    <div >
-        <h1 class="h1">et_wl </h1>
-        <van-button type="primary" @click="goUrl">主要按钮</van-button>
+    <div class="box">
+        <van-button type="primary" @click="goUrl">去login页面</van-button>
     </div>
 </template>
 
@@ -13,4 +12,8 @@ button
     width 250px
     height 100px
     font-size 30px
+.box
+    background-image url('../../assets/images/common/cat.jpg')
+    background-size 100%
+    background-repeat no-repeat
 </style>

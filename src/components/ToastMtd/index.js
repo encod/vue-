@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 const toastVue = require('./toast.vue').default
-
 const Toast = Vue.extend(toastVue)
 
 export default (msg) => {

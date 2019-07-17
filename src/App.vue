@@ -17,10 +17,11 @@
                 <keep-alive>
                     <router-view v-if="$route.meta.keepAlive" class="academyContent" @setHeader="setHeader"></router-view>
                 </keep-alive>
+            </transition>
+            <transition name="fade" mode="out-in">
                 <router-view v-if="!$route.meta.keepAlive" class="academyContent" @setHeader="setHeader"></router-view>
             </transition>
-            <!-- <transition>
-            </transition> -->
+
         </div>
     </div>
 </template>

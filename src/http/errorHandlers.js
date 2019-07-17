@@ -6,6 +6,10 @@ const errorHandlers = {
     '106' () {
         toast(code['106'])
     },
+    '0' () {
+        console.log(21321)
+        toast('0')
+    },
     default (code, msg) {
         console.log(`unknown error:${msg}`)
         toast(msg)

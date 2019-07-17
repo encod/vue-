@@ -20,24 +20,17 @@ function isAbsoulteUrl (src) {
  * @param config 发送请求时候传入的配置
  */
 export function resolveConfigUrl (config) {
-    console.log('resolveConfigUrl', config)
-    const reqUrl = apiMap[config.apiName] || config.url
+    const reqUrl = apiMap[config.url] || config.url
     let apiHost = API_HOST[GLOBAL_API_ENV]
     if (!reqUrl) {
         return Promise.reject(new Error('request url cannot be empty'))
     }
-
     if (!_.endsWith(apiHost, '/')) {
         apiHost += '/'
     }
     const isAbsolute = isAbsoulteUrl(reqUrl)
     config.url = isAbsolute ? reqUrl : (apiHost + reqUrl)
-
-    if (isAbsolute) {
-        delete config.params.token
-    }
-
-    return _.omit(config, 'apiName')
+    return config
 }
 
 /**
@@ -45,9 +38,7 @@ export function resolveConfigUrl (config) {
  * @param config 发送请求时候传入的配置
  */
 export function resolveConfigErrors (config) {
-    console.log(config, 'resolveConfigErrors')
     const {errors} = config
-
     if (!errors) {
         config.errors = []
     }
@@ -59,11 +50,9 @@ export function resolveConfigErrors (config) {
  * @param config 发送请求时候传入的配置
  */
 export function resolveConfigPostData (config) {
-    console.log(config, 'resolveConfigPostData')
-
     const {method} = config
     if (method && method.toLowerCase() === 'post') {
-        config.data = serialize(config.data || {})
+        config.data = serialize(config.data || {}, true)
     }
     return config
 }
@@ -73,12 +62,11 @@ export function resolveConfigPostData (config) {
  * @param config 发送请求时候传入的配置
  */
 export function  resolveConfigParams (config) {
-    console.log(config, 'resolveConfigParams')
     return new Promise((resolve, reject) => {
         task.exec(() => {
-            config.params = config.params || {}
+            config.data = config.data || {}
             const judgeParams = {}
-            if (config.apiName && apiMap.hasOwnProperty(config.apiName)) {
+            if (config.url && apiMap.hasOwnProperty(config.url)) {
                 _.extend(judgeParams, commonParams)
                 const params = {
                     token: store.state.appInfo.token,
@@ -89,8 +77,8 @@ export function  resolveConfigParams (config) {
             config.paramsSerializer  = serialize
 
             const method = config.method
-
             if (method.toUpperCase() === 'GET' && config.data) {
+                _.extend(config.params, config.data)
                 delete config.data
             }
             resolve(config)
@@ -103,9 +91,8 @@ export function  resolveConfigParams (config) {
  * @param res ResponseData
  */
 export function handleErrorCode (res) {
-    const data = res.data
-    const errCode = Number(data.errcode)
-    const errMsg = data.errmsg || errorCode[errCode] || '未定义错误'
+    const errCode = Number(res.data.errcode)
+    const errMsg = res.data.errmsg || errorCode[errCode] || '未定义错误'
     if (errCode === 0) {
         return res
     } else if (_.indexOf(res.config.errors, errCode) > -1) {
@@ -147,7 +134,7 @@ export function handleNetworkError (err) {
 export function queueTaskSuccessResponse (response) {
     return new Promise((resolve) => {
         task.exec(() => {
-            resolve(response)
+            resolve(response.data)
         })
     })
 }
