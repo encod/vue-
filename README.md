@@ -1,7 +1,13 @@
 # et_wl
 
 > 移动端的Vue架子
-
+>
+## tip
+- node>= 6.0.0
+- npm>= 3.0.0
+- vue-cli版本 v2.9.6
+- webpack版本 v3.6.0
+- axios版本 v0.19.0，其他版本可能会有一些小问题
 ## Build Setup
 
 ``` bash
@@ -28,9 +34,9 @@ npm test
 ```
 
 ### 样式
-- 使用styl预处理
-- rem 布局 因为是移动端  所以加了rem布局
-- 各个浏览器兼容已做了
+- 使用styl预处理,简洁明了，代码少
+- 因为是移动端，所以rem布局,使用的是px2rem-loader
+- 各个浏览器兼容已做了，使用的是autoprefixer，环境的版本兼容在package.json里面的browserslist字段设置
 
 ### 代码规范
 - eslint
@@ -39,10 +45,32 @@ npm test
 - 架子打开的方式为loachost，这里加入了ip打开方式，因为有时候需要在微信环境看效果，需要ip生成的二维码才可以看，loachost是无效的
 
 ### UI
-- 使用的是VantUI,因为是移动端的,所以也配置了vant的rem布局,使用方式为按需引入
+- 使用的是VantUI,因为是移动端的,所以也配置了vant的rem布局
+- 使用方式为按需引入
+```
+// 引入一个button按钮组件
 
+import {Button} from 'vant'
+
+components: {
+    [Button.name]:Button
+},
+```
 ### 图片懒加载
 - 使用vue-lazyload进行图片懒加载
+- 使用方式
+```
+// 未使用懒加载
+
+<img src="图片路径">
+<img :src="图片路径">
+
+
+
+// 使用懒加载
+
+<img v-lazy="路径">
+```
 
 ### 请求
 - 二次封装了axias
@@ -72,3 +100,25 @@ this.$ajax.post('home',{id:8, type:'h5'}).then(res => {
 ```
 ### 数据状态管理
 - vuex使用了 mapState获取数据 mapActions获取方法
+```
+// 调用方法，每个页面的函数方法名称最好是不一样的
+
+methods: {
+    ...mapActions([
+        'checkIsWeixin',
+    ]),
+}
+使用： this.checkIsWeixin(),this.checkIsWeixin({})
+tip：参数为一个对象
+
+
+// 调用state的数据
+
+computed: {
+    ...mapState({
+        isWeixin: ({ appInfo }) => appInfo.isWeixin,
+    }),
+},
+使用：isWeixin类似于data里面的数据，使用方式和data里面的参数一样，this.isWeixin
+tip: isWeixin为属性名称,可以随意定义,appInfo为store文件夹里面的文件夹名称
+```
