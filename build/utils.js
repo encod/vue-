@@ -24,7 +24,7 @@ exports.cssLoaders = function (options) {
   const px2remLoader = {
     loader: 'px2rem-loader',
     options: {
-      remUnit: 100 // 这里设置html根字体，
+      remUnit: 75 // 这里设置html根字体，
     }
   }
   const postcssLoader = {

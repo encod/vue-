@@ -6,7 +6,6 @@ var ua = window.navigator.userAgent;
 var isAndroid = /android/gi.test(ua);
 var isIphone = /iphone/gi.test(ua);
 var dpr = window.devicePixelRatio || 1;
-
 function setRem() {
     var contentWidth;
     if (isIphone) {

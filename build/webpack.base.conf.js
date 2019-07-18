@@ -10,8 +10,6 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -94,5 +92,5 @@ module.exports = {
     new DefinePlugin({
         GLOBAL_API_ENV:JSON.stringify(API_ENV)
     }),
-    ]
+    ],
 }

@@ -11,10 +11,9 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 const ET_WL_IP = require('ip').address();
 const InjectScriptToHtml = require('./plugins/inject-script-to-html-plugin')
-
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
-
+process.traceDeprecation = true;
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
