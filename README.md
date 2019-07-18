@@ -6,7 +6,8 @@
 - node>= 6.0.0
 - npm>= 3.0.0
 - vue-cli版本 v2.9.6
-- webpack版本 v3.6.0
+- webpack版本 v4.36.1  v4以上的 需要安装webpack和webpack-cli包
+- webpack-cli版本 3.1.0
 - axios版本 v0.19.0，其他版本可能会有一些小问题
 ## Build Setup
 
